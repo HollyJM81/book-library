@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-const ReaderModel = require('./reader');
 
 // eslint-disable-next-line no-undef
 const { PGDATABASE, PGUSER, PGPASSWORD, PGHOST, PGPORT } = process.env;
@@ -11,9 +10,8 @@ const setupDatabase = () => {
     dialect: 'postgres',
     logging: false,
   });
-  const Reader = ReaderModel(connection, Sequelize);
+
   connection.sync({ alter: true });
-  return { Reader };
 };
 
 module.exports = setupDatabase();
